@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mdbspringboot.model.Resource;
@@ -25,14 +26,20 @@ public class UserController {
 	@Autowired
     ResourceRepository resourceRepo;
 
-    @GetMapping("/user/{id}")
-    User getUser(@PathVariable String id) {
+    @GetMapping("/user")
+    User getUser(@RequestParam(required = false) String userId,    @RequestParam(required = false) String cmpType) {
       
-      User u = userRepo.findAll(id).get(0);
-      List<Resource> resources = resourceRepo.findAll("public");
+      User u = userRepo.findAll(userId).get(0);
+      //List<Resource> resources = resourceRepo.findAll("public");
+      List<Resource> resources = resourceRepo.findByType(cmpType, "public");
       System.out.println(resources);
-      u.getResource().addAll(resources);
-      
+      if(u.getResource() == null){
+        u.setResource(resources);
+      }else {
+        u.getResource().addAll(resources);
+      }
+
+          
       return u;
     }
 

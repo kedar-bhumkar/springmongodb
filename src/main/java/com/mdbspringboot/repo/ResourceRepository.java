@@ -9,8 +9,8 @@ import com.mdbspringboot.model.Resource;
 
 public interface ResourceRepository extends MongoRepository<Resource, String> {
     
-    @Query(value="{type:'?0'}")
-    Resource findByType(String type);
+    @Query(value="{type:'?0',default_access:'?1'}")
+    List<Resource> findByType(String type, String default_access);
 
     @Query(value="{default_access:'?0'}")
     List<Resource> findAll(String default_access);
