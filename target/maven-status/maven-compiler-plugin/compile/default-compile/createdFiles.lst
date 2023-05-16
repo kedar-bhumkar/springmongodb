@@ -1,0 +1,8 @@
+com\mdbspringboot\repo\ResourceRepository.class
+com\mdbspringboot\model\User.class
+com\mdbspringboot\model\Resource.class
+com\mdbspringboot\web\UserController.class
+com\mdbspringboot\model\Resource$Metadata.class
+com\mdbspringboot\model\User$Role.class
+com\mdbspringboot\app\MdbSpringBootApplication.class
+com\mdbspringboot\repo\UserRepository.class
